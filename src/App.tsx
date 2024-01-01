@@ -34,6 +34,7 @@ const randomTiles = (): number[][] => {
     return rows;
 };
 function App() {
+    const [count, setCount] = useState(0);
     const [grid, setGrid] = useState(() => {
         return randomTiles();
     });
@@ -49,6 +50,7 @@ function App() {
         }
 
         let gridCopy = JSON.parse(JSON.stringify(grid));
+
         for (let i = 0; i < numRows; i++) {
             for (let j = 0; j < numCols; j++) {
                 let neighbors = 0;
@@ -61,7 +63,7 @@ function App() {
                         neighbors += grid[newI][newJ];
                     }
                 });
-
+                setCount(count+1)
                 if (neighbors < 2 || neighbors > 3) {
                     gridCopy[i][j] = 0;
                 } else if (grid[i][j] === 0 && neighbors === 3) {
@@ -76,6 +78,7 @@ function App() {
     useInterval(() => {
         runSimulation(grid);
     }, 150);
+
 
   return (
       <div className="App" >
@@ -103,6 +106,7 @@ function App() {
                   ))
               ))}
           </div>
+          <div>Simulation count:{count}</div>
           <div className="button-container" >
               <button
 
