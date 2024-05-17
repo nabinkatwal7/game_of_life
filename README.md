@@ -5,4 +5,5 @@ Run it in your system.
 2. Install dependencies using 'go mod tidy'
 3. Run the project using 'go run .'
 
+SCREENSHOT
 ![Game of life](./screenshot.png)
